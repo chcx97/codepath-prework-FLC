@@ -32,7 +32,11 @@ The following **optional** features are implemented:
 * [x] Player only loses after 3 mistakes (instead of on the first mistake)
 * [x] Game button appearance change goes beyond color (e.g. add an image)
 * [ ] Game button sound is more complex than a single tone (e.g. an audio file, a chord, a sequence of multiple tones)
+
 * [x] User has a limited amount of time to enter their guess on each turn
+
+* [ ] User has a limited amount of time to enter their guess on each turn
+
 
 The following **additional** features are implemented:
 - [x] One of the patterns play the song, "Twinkle, Twinkle, Little Star."

@@ -11,6 +11,7 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
 .float-parent-element { 
     width: 90%; 
      
@@ -32,36 +33,49 @@ html {
     font-weight:bold;
     font-size:25px
 }
+
 /* adjust typography defaults */
 body {
   margin: 1rem;
   font-family: sans-serif;
   color: white;
   line-height: 1.5;
+
   background-image: url("https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/2915359.jpg?v=1649965720257");
   background-size: 1600px;
   background-position: right top;
+
+  background-image: url("https://cdn.glitch.global/4580ec3e-2ea5-40ff-a5b3-b75fd3b3d436/Your-Name-beautiful-sky-meteor-anime_3840x2160.jpg?v=1649804775217");
+
 }
 
 h1 {
   font-family: verdana, arial, sans-serif; 
   color: white;
+
   text-align: center;
 }
 h2{
   font-weight:normal;
   text-align: center;
 }
+
+}
+
+
 button{
   padding:10px;
   border-radius: 10px;
 }
+
 #health > p{
   text-align: left center;
 }
 #countDown > p{
   text-align: right center;
 }
+
+
 #gameButtonArea > button {
   width:200px;
   height:200px;
@@ -70,6 +84,7 @@ button{
 .hidden {
   display: none;
 }
+
 .strokeme
 {
     color: #635ab7;
