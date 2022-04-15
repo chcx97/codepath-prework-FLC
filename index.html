@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
@@ -17,27 +18,51 @@
     <!-- this is the start of content -->
     
     <h1>Light and Sound Memory Game</h1>
-    <p>
-  
+    
+    <h2>
       Welcome to the game! Repeat back the patterns by pressing buttons.
-    </p>
+    </h2>
 
     <button style="background-color:white; color:black; font-weight:bold;" id="startBtn" onclick="startGame()"
             >Start
     </button>
     
-    <button id="stopBtn" class="hidden" onclick="stopGame()"
+    <button style="background-color:white; color:black; font-weight:bold;" id="stopBtn" class="hidden" onclick="stopGame()"
             >Stop
     </button>
-      <p style="font-weight:bold; font-size:25px" id="mistakeCount">
-          Lives:
-            <img id="strike1" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
-            <img id="strike2" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
-            <img id="strike3" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
-    </p>
-    <p style="font-weight:bold; font-size:25px" id="timer">
-        Timer: <span id="timeCount" >15</span>
-    </p>
+    <div class="float-parent-element">
+      <div class="float-child-element">
+       <div class="health" id="mistakeCount" >
+        Lives:
+        <img id="strike1" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
+        <img id="strike2" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
+        <img id="strike3" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
+        </div>
+      </div>
+    <div class="float-child-element" >
+      <div class ="time" id="timer">
+        <script>
+          const myInterval = setInterval(myTimer, 1000);
+          var time = 15;
+          function myTimer() {
+          time -= 1;
+          if(time < 15){
+            document.getElementById("demo").innerHTML = time;
+          }
+            if (time <= 0){
+              clearInterval(myInterval);
+            }
+          }
+
+            function myStop() {
+            clearInterval(myInterval);
+            }
+        </script>
+        Timer: <span class="strokeme" style = " ;font-weight:bold" id="timeCount" >15</span>
+      </div>
+    </div> 
+    </div>
+  
     <div id="gameButtonArea">
 
         <button id="button1" onclick="guess(1)" onmousedown="startTone(1)" onmouseup="stopTone(1)">
