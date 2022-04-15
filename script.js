@@ -8,15 +8,17 @@ const patternElements = 5;
 var pattern = [6, 6, 5, 5, 1, 1, 5, 4, 4, 7, 7 , 2, 2, 3];
 var patternType = 0;
 var progress = 0; 
+var ready = false;
 var gamePlaying = false;
 var tonePlaying = false;
 var volume = 0.5;  //must be between 0.0 and 1.0
 var guessCounter = 0;
 var gameStrikes = 0;
 var heartCount;
-var time = 15;
-var gameTimer;
-
+var time;
+var waitTime;
+const secs = 15;
+let gameTimer = null; 
 function startGame(){
     //initialize game variables
     progress = 0;
@@ -25,23 +27,24 @@ function startGame(){
     heartCount=3;
     
   // swap the Start and Stop buttons
-
+    
     document.getElementById("startBtn").classList.add("hidden");
     document.getElementById("stopBtn").classList.remove("hidden");
-  
+    document.getElementById("timeCount").innerHTML = secs;
     document.getElementById("strike1").classList.remove("hidden");
     document.getElementById("strike2").classList.remove("hidden");
     document.getElementById("strike3").classList.remove("hidden");
-    
-  
   patternType = getRandomIntForPattern(2);
   console.log("patternType is: " + patternType);
   if (patternType == 1){
     randomPattern();
-    playClueSequence();
-  }else
-    playClueSequence();
+    playClueSequence(myTimer);
+  }else{
+    playClueSequence(myTimer);
+  }
 }
+
+
   
 function randomPattern(){
   pattern = []
@@ -60,6 +63,8 @@ function stopGame(){
   // swap the Start and Stop buttons
   document.getElementById("stopBtn").classList.add("hidden");
   document.getElementById("startBtn").classList.remove("hidden");
+  clearInterval(gameTimer);
+  reset();
 }
 
 // Sound Synthesis Functions
@@ -105,9 +110,8 @@ function startTone(btn){
     }
   }
 }
-function timer(){
-  document.getElementById("timeCount");
-}
+
+
 function stopTone(btn){
   g.gain.setTargetAtTime(0,context.currentTime + 0.05,0.025)
   tonePlaying = false
@@ -138,11 +142,12 @@ function playSingleClue(btn){
     setTimeout(clearButton,clueHoldTime,btn);
   }
 }
-function playClueSequence(){
+function playClueSequence(myTimer){
   console.log("pattern is: " + pattern);
   guessCounter = 0;
   context.resume()
   let delay = nextClueWaitTime; //set delay to initial wait time
+  console.log("b4 for loop, progress = " + progress);
   for(let i=0;i<=progress;i++){ // for each clue that is revealed so far
     console.log("pattern at: " + pattern[i]);
     console.log("play single clue: " + pattern[i] + " in " + delay + "ms")
@@ -152,24 +157,39 @@ function playClueSequence(){
     delay += clueHoldTime 
     delay += cluePauseTime;
   }
+  time = secs;
+  console.log("checking time rn, time = " + time);
+  console.log("delay = " + delay);
+  document.getElementById("timeCount").innerHTML = time;
+  setTimeout(myTimer(), delay);
 }
 
-function myTimer(){
-  time -= 1;
-  if(time < 15){
+function startTimer(){
+  console.log("time before = " + time);
+  if (time <= 15){
     document.getElementById("timeCount").innerHTML = time;
+    time -= 1;
+    console.log("time after = " + time);
   }
-  if(time < 0){
+  if (time < -1){
     loseGame();
   }
+  time +=1;
 }
+function myTimer(){
+  console.log("checking time rn..., time = " + time);
+  gameTimer = setInterval(startTimer, 1000);
+}
+
 
 function loseGame(){
   stopGame();
-  document.getElementById("strike"+heartCount).classList.add("hidden");
-  heartCount--;
   alert("Game Over. You lost.");
-  clearInterval(gameTimer);
+  
+}
+
+function reset(){
+  document.getElementById("timeCount").innerHTML = secs;
 }
 
 function winGame(){
@@ -178,6 +198,7 @@ function winGame(){
 }
 
 function guess(btn){
+  
   console.log("user guessed: " + btn);
   if(!gamePlaying){
     return;
@@ -211,6 +232,8 @@ function guess(btn){
       alert("Strike "+gameStrikes+"! Let's play the pattern again.");
       playClueSequence();
     } else{
+      document.getElementById("strike"+heartCount).classList.add("hidden");
+      heartCount--;
       loseGame();
     }
   } 
