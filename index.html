@@ -18,21 +18,15 @@
     <!-- this is the start of content -->
     
     <h1>Light and Sound Memory Game</h1>
-  
+    
     <h2>
       Welcome to the game! Repeat back the patterns by pressing buttons.
-
-    <p>
-  
-      Welcome to the game! Repeat back the patterns by pressing buttons.
-    </p>
-
+    </h2>
 
     <button style="background-color:white; color:black; font-weight:bold;" id="startBtn" onclick="startGame()"
             >Start
     </button>
     
-
     <button style="background-color:white; color:black; font-weight:bold;" id="stopBtn" class="hidden" onclick="stopGame()"
             >Stop
     </button>
@@ -69,20 +63,6 @@
     </div> 
     </div>
   
-
-    <button id="stopBtn" class="hidden" onclick="stopGame()"
-            >Stop
-    </button>
-      <p style="font-weight:bold; font-size:25px" id="mistakeCount">
-          Lives:
-            <img id="strike1" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
-            <img id="strike2" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
-            <img id="strike3" class="hidden" src ="https://cdn.glitch.global/f97d6e4c-d414-4815-9521-f54a7f8f2e3b/PikPng.com_minecraft-heart-png_697718.png?v=1649830137295" width="30" height = "30">
-    </p>
-    <p style="font-weight:bold; font-size:25px" id="timer">
-        Timer: <span id="timeCount" >15</span>
-    </p>
-
     <div id="gameButtonArea">
 
         <button id="button1" onclick="guess(1)" onmousedown="startTone(1)" onmouseup="stopTone(1)">
