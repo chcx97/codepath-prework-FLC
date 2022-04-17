@@ -16,8 +16,9 @@ var guessCounter = 0;
 var gameStrikes = 0;
 var heartCount;
 var time;
+let fixTime = false;
 var waitTime;
-const secs = 15;
+const secs = 30;
 let gameTimer = null; 
 function startGame(){
     //initialize game variables
@@ -144,6 +145,8 @@ function playSingleClue(btn){
 }
 function playClueSequence(myTimer){
   console.log("pattern is: " + pattern);
+  fixTime = false;
+  time = secs;
   guessCounter = 0;
   context.resume()
   let delay = nextClueWaitTime; //set delay to initial wait time
@@ -157,7 +160,6 @@ function playClueSequence(myTimer){
     delay += clueHoldTime 
     delay += cluePauseTime;
   }
-  time = secs;
   console.log("checking time rn, time = " + time);
   console.log("delay = " + delay);
   document.getElementById("timeCount").innerHTML = time;
@@ -166,7 +168,11 @@ function playClueSequence(myTimer){
 
 function startTimer(){
   console.log("time before = " + time);
-  if (time <= 15){
+  if (fixTime){
+    time = secs;
+    console.log("fixtime = " + fixTime);
+  }
+  if (time <= secs){
     document.getElementById("timeCount").innerHTML = time;
     time -= 1;
     console.log("time after = " + time);
@@ -230,6 +236,7 @@ function guess(btn){
       document.getElementById("strike"+heartCount).classList.add("hidden");
       heartCount--;
       alert("Strike "+gameStrikes+"! Let's play the pattern again.");
+      time = 30;
       playClueSequence();
     } else{
       document.getElementById("strike"+heartCount).classList.add("hidden");
