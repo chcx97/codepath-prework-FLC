@@ -37,7 +37,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] One of the patterns play the song, "Twinkle, Twinkle, Little Star."
-- [ ] Displays hearts for amount of turns left
+- [x] Displays hearts for amount of turns left
 
 ## Video Walkthrough (GIF)
 
